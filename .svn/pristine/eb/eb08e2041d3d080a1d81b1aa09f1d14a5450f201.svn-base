@@ -1,0 +1,14 @@
+package com.uujob.mobile.contants;
+
+import org.hibernate.metamodel.binding.PluralAttributeBinding;
+
+public class Constants {
+	/* 后端返回值约束  */
+	public static final int LOGIN_SUCCESS = 1000;
+	public static final int REGISTER_SUCCESS = 1001;
+	public static final int WRONG_PASSWORD = 1002;
+	public static final int UNREGISTED_MAIL = 1003;
+	public static final int MAIL_EXISTED = 1004;
+	public static final int LOGIN_FAILED = 1005;
+	
+}

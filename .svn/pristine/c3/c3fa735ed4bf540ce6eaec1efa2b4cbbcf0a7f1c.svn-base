@@ -1,0 +1,32 @@
+package com.uujob.mobile.controller.entity;
+
+import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.sun.jna.platform.win32.OaIdl.DATE;
+
+@Entity
+@Table(name="corporation_test")
+public class Corporation {
+	@Id
+	@GeneratedValue(generator = "system-increment")
+	@GenericGenerator(name = "system-increment", strategy = "increment")
+	private int id;
+	@Column
+	private String name;
+	@Column 
+	private String introduction;
+	@Column
+	private boolean beginRecruitment;
+	@Column
+	private Date deadLine;
+	
+}

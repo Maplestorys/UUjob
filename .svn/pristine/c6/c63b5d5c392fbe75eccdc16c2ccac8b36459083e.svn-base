@@ -1,0 +1,13 @@
+package com.uujob.mobile.controller.service;
+
+import java.util.List;
+
+import com.uujob.mobile.controller.entity.User;
+
+
+
+public interface IUserManager {
+	public void addUser(User user);
+	public List<User> getAllUser();
+	public boolean delUser(String id);
+}

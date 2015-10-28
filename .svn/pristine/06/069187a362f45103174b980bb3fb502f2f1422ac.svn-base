@@ -1,0 +1,49 @@
+package com.uujob.mobile.test;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.springframework.test.context.TestExecutionListeners;
+
+public class StudentUserTest {
+	public static void main(String[]args) throws ClientProtocolException, IOException {
+		//registerTest();
+		loginTest();
+	}
+	
+	public static void registerTest() throws ClientProtocolException, IOException {
+		DefaultHttpClient httpClient = new DefaultHttpClient();
+		HttpPost httpPost = new HttpPost("http://localhost:8080/UUjob/api/register");
+		List<NameValuePair> nvps = new ArrayList<NameValuePair>();  
+        nvps.add(new BasicNameValuePair("nickName", "aaeefa"));  
+        nvps.add(new BasicNameValuePair("mailAddress", "1355662@qq.com"));
+        nvps.add(new BasicNameValuePair("studentPassword", "1234565"));  
+        httpPost.setEntity(new UrlEncodedFormEntity(nvps));  
+        HttpResponse httpResponse = httpClient.execute(httpPost);  
+        System.out.println(EntityUtils.toString(httpResponse.getEntity()));
+        httpClient.getConnectionManager().shutdown();  
+	}
+	
+	public static void loginTest() throws ClientProtocolException, IOException {
+		DefaultHttpClient httpClient = new DefaultHttpClient();
+		HttpPost httpPost = new HttpPost("http://localhost:8080/UUjob/api/login");
+		List<NameValuePair> nvps = new ArrayList<NameValuePair>();  
+        nvps.add(new BasicNameValuePair("mailAddress", "1355662@qq.com"));
+        nvps.add(new BasicNameValuePair("studentPassword", "1234565"));  
+        httpPost.setEntity(new UrlEncodedFormEntity(nvps));  
+        HttpResponse httpResponse = httpClient.execute(httpPost);  
+        System.out.println(EntityUtils.toString(httpResponse.getEntity()));
+        httpClient.getConnectionManager().shutdown();  
+	}
+}

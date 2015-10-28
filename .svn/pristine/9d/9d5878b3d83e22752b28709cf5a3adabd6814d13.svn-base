@@ -1,0 +1,33 @@
+package com.uujob.mobile.controller;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.uujob.mobile.controller.entity.StudentUser;
+import com.uujob.mobile.controller.service.IStudentUserManager;
+
+@Controller
+public class StudentUserController {
+	@Resource(name="studentUserManager")
+	private IStudentUserManager studentUserManager;
+	
+	@RequestMapping("/api/login")
+	public int login(String MailAdress,String Password){
+		int i = studentUserManager.Login(MailAdress, Password);
+		return i;
+	}
+	@RequestMapping("/api/register")
+	public String register(StudentUser studentUser){
+		System.out.println("register executed");
+		int i = studentUserManager.Register(studentUser);
+		return "/success" ;
+	}
+	
+	@RequestMapping("/api/2register")
+	public String toRegister(){
+		System.out.println("to register executed");
+		return "/register";
+	}
+}

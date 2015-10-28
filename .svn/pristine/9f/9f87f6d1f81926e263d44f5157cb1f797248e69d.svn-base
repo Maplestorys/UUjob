@@ -1,0 +1,37 @@
+package com.uujob.mobile.controller.service;
+
+import java.util.List;
+
+import com.uujob.mobile.controller.dao.IUserDAO;
+import com.uujob.mobile.controller.entity.User;
+
+
+
+public class UserManager implements IUserManager {
+	
+	private IUserDAO userDao;
+
+	public void setUserDao(IUserDAO userDao) {
+		this.userDao = userDao;
+	}
+
+	@Override
+	public void addUser(User user) {
+		// TODO Auto-generated method stub
+		userDao.addUser(user);
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		// TODO Auto-generated method stub
+		return userDao.getAllUser();
+	}
+
+	@Override
+	public boolean delUser(String id) {
+		// TODO Auto-generated method stub
+		return userDao.delUser(id);
+	}
+	
+
+}

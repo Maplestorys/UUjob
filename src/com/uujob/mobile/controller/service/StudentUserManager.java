@@ -1,0 +1,46 @@
+package com.uujob.mobile.controller.service;
+
+import com.uujob.mobile.controller.dao.IStudentUserDAO;
+import com.uujob.mobile.controller.entity.StudentUser;
+
+public class StudentUserManager implements IStudentUserManager {
+	
+	private IStudentUserDAO studentUserDAO;
+	
+	public void setStudentUserDAO(IStudentUserDAO studentUserDAO) {
+		this.studentUserDAO = studentUserDAO;
+	}
+	
+	
+	@Override
+	public int Login(String MaiiAddress, String Password) {
+		// TODO Auto-generated method stub
+		StudentUser studentUser = studentUserDAO.queryStudentUser(MaiiAddress);
+		if(studentUser!=null){
+			if(studentUser.getStudentPassword().equals(Password)){
+				return 1;
+			}
+		}
+		return 0;
+	}
+
+	@Override
+	public int EditProfile(String id,StudentUser student) {
+		// TODO Auto-generated method stub
+		studentUserDAO.updateStudentUser(id, student);
+		return 0;
+	}
+
+	@Override
+	public int Register(StudentUser user) {
+		// TODO Auto-generated method stub
+		System.out.println("student manager executed");
+		StudentUser stuTemp = studentUserDAO.queryStudentUser(user.getMailAddress());
+		if(stuTemp==null){
+			studentUserDAO.addStudentUser(user);
+			return 1;
+			}
+		return 0;
+	}
+
+}
